@@ -29,15 +29,13 @@ public class RegistrationServlet extends HttpServlet {
 
         User user = new User(email, password);
 
-        if (userService.isExistsThisUser(user)) {
+        if (!userService.addUser(user)) {
             resp.setContentType("text/html;charset=utf-8");
             json = gson.toJson("Пользователь уже зарегистрирован");
             resp.getWriter().println(json);
             resp.setStatus(HttpServletResponse.SC_FOUND);
             return;
         }
-
-        userService.addUser(user);
 
         json = gson.toJson(user);
         resp.setContentType("text/html;charset=utf-8");

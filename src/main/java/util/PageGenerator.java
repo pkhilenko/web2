@@ -14,12 +14,13 @@ import java.util.Map;
 
 public class PageGenerator {
     private static PageGenerator instance;
-    private PageGenerator(){
+
+    private PageGenerator() {
         cfg = new Configuration();
     }
 
-    public static PageGenerator getInstance(){
-        if(instance == null){
+    public static PageGenerator getInstance() {
+        if (instance == null) {
             instance = new PageGenerator();
         }
         return instance;
@@ -40,5 +41,4 @@ public class PageGenerator {
         }
         return stream.toString();
     }
-
 }

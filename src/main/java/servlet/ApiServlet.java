@@ -65,7 +65,7 @@ public class ApiServlet extends HttpServlet {
         Long id = null;
         try {
             id =  Long.parseLong(req.getParameter("id"));
-        } catch (NumberFormatException e) { }
+        } catch (NumberFormatException ignored) { }
         if (req.getPathInfo().contains("auth")) {
             if (id == null) {
                 userService.logoutAllUsers();

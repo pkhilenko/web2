@@ -2,17 +2,17 @@ package service;
 
 import model.User;
 
-import javax.servlet.SingleThreadModel;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 public class UserService {
     private static UserService instance;
-    private UserService(){}
 
-    public static UserService getInstance(){
-        if(instance == null){
+    private UserService() {
+    }
+
+    public static UserService getInstance() {
+        if (instance == null) {
             instance = new UserService();
         }
         return instance;
@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public boolean addUser(User user) {
-        if (isExistsThisUser(user) ) {
+        if (isExistsThisUser(user)) {
             return false;
         } else {
             dataBase.put(user.setId(maxId.getAndIncrement()), user);
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public List<User> getAllAuth() {
-        return  new ArrayList<>(authMap.values());
+        return new ArrayList<>(authMap.values());
     }
 
     public boolean authUser(User user) {
@@ -64,8 +64,8 @@ public class UserService {
         if (!user.getPassword().equals(user1.getPassword())) {
             return false;
         }
-        authMap.put(user1.getId(), user);
-            return true;
+        authMap.put(user1.getId(), user1);
+        return true;
     }
 
     public void logoutAllUsers() {
@@ -75,5 +75,4 @@ public class UserService {
     public boolean isUserAuthById(Long id) {
         return authMap.containsKey(id);
     }
-
 }

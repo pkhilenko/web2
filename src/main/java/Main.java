@@ -7,7 +7,7 @@ import servlet.RegistrationServlet;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ApiServlet apiServlet = new ApiServlet();
         RegistrationServlet registrationServlet = new RegistrationServlet();
         LoginServlet loginServlet = new LoginServlet();

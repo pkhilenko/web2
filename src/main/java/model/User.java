@@ -25,7 +25,7 @@ public class User {
         if (o == null) {
             return false;
         }
-        if (!(getClass() == o.getClass())){
+        if (!(getClass() == o.getClass())) {
             return false;
         }
         return this.email.equals(((User) o).email);

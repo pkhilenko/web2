@@ -24,11 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         User user = new User(email, password);
 
-        userService.authUser(user);
-
-        user = userService.getAllUsers().stream().filter(user::equals).findFirst().get();
-
-        if (!userService.isUserAuthById(user.getId())) {
+        if (!userService.authUser(user)) {
             resp.setContentType("text/html;charset=utf-8");
             json = gson.toJson("Вы ввели неправильный логин или пароль");
             resp.getWriter().println(json);
