@@ -33,7 +33,7 @@ public class RegistrationServlet extends HttpServlet {
             resp.setContentType("text/html;charset=utf-8");
             json = gson.toJson("Пользователь уже зарегистрирован");
             resp.getWriter().println(json);
-            resp.setStatus(HttpServletResponse.SC_FOUND);
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 

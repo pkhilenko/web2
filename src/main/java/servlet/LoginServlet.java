@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             resp.setContentType("text/html;charset=utf-8");
             json = gson.toJson("Вы ввели неправильный логин или пароль");
             resp.getWriter().println(json);
-            resp.setStatus(HttpServletResponse.SC_FOUND);
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 

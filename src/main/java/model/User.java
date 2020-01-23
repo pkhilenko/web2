@@ -17,25 +17,6 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (o == null) {
-            return false;
-        }
-        if (!(getClass() == o.getClass())) {
-            return false;
-        }
-        return this.email.equals(((User) o).email);
-    }
-
-    @Override
-    public int hashCode() {
-        return email.hashCode();
-    }
-
     public String getEmail() {
         return email;
     }
@@ -56,8 +37,7 @@ public class User {
         return id;
     }
 
-    public Long setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return id;
     }
 }

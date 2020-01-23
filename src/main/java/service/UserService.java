@@ -38,7 +38,8 @@ public class UserService {
         if (isExistsThisUser(user)) {
             return false;
         } else {
-            dataBase.put(user.setId(maxId.getAndIncrement()), user);
+            user.setId(maxId.getAndIncrement());
+            dataBase.put(user.getId(), user);
             return true;
         }
     }
@@ -48,7 +49,7 @@ public class UserService {
     }
 
     public boolean isExistsThisUser(User user) {
-        return dataBase.containsValue(user);
+        return findUserByEmail(user.getEmail()) != null;
     }
 
     public List<User> getAllAuth() {
@@ -59,12 +60,12 @@ public class UserService {
         if (!isExistsThisUser(user)) {
             return false;
         }
-        User user1 = getAllUsers().stream().filter(user::equals).findFirst().get();
+        User foundUser = findUserByEmail(user.getEmail());
 
-        if (!user.getPassword().equals(user1.getPassword())) {
+        if (!user.getPassword().equals(foundUser.getPassword())) {
             return false;
         }
-        authMap.put(user1.getId(), user1);
+        authMap.put(foundUser.getId(), foundUser);
         return true;
     }
 
@@ -74,5 +75,9 @@ public class UserService {
 
     public boolean isUserAuthById(Long id) {
         return authMap.containsKey(id);
+    }
+
+    public User findUserByEmail(String email) {
+        return getAllUsers().stream().filter(u -> u.getEmail().equals(email)).findFirst().orElse(null);
     }
 }
